@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     poppler-utils \
     libglib2.0-0 \
+    libgl1 \
     libsm6 \
     libxext6 \
     libxrender-dev \
@@ -47,6 +48,6 @@ COPY api.py /app/utrnet/api.py
 COPY entrypoint.sh /app/entrypoint.sh
 RUN chmod +x /app/entrypoint.sh
 
-EXPOSE 5001
+EXPOSE 5000
 
 ENTRYPOINT ["/app/entrypoint.sh"]

@@ -33,7 +33,7 @@ RUN pip install --no-cache-dir \
     ultralytics==8.1.8 \
     pdf2image==1.17.0 \
     Pillow \
-    numpy \
+    numpy==1.26.4 \
     opencv-python-headless \
     six \
     natsort \

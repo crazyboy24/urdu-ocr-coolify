@@ -16,31 +16,33 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /app
 
-# Clone the End-To-End webapp (has model.py, read.py, utils.py, UrduGlyphs.txt all in one place)
-RUN git clone https://github.com/abdur75648/End-To-End-Urdu-OCR-WebApp.git utrnet
+# Clone the ORIGINAL UTRNet repo — has the correct HRNet model.py
+# that matches the UTRNet-Large weights (best_norm_ED.pth)
+RUN git clone https://github.com/abdur75648/UTRNet-High-Resolution-Urdu-Text-Recognition.git utrnet
 
 WORKDIR /app/utrnet
 
-# Install CPU-only PyTorch 2.0.1 first to avoid pulling CUDA wheels
+# Install CPU-only PyTorch 1.9.1 — matches the original UTRNet repo
 RUN pip install --no-cache-dir \
-    torch==2.0.1+cpu \
-    torchvision==0.15.2+cpu \
-    --index-url https://download.pytorch.org/whl/cpu
+    torch==1.9.1+cpu \
+    torchvision==0.10.1+cpu \
+    -f https://download.pytorch.org/whl/torch_stable.html
 
 # Install remaining deps
 RUN pip install --no-cache-dir \
     ultralytics==8.1.8 \
     pdf2image==1.17.0 \
-    Pillow==10.2.0 \
-    numpy==1.23.5 \
-    opencv-python-headless==4.9.0.80 \
-    six==1.16.0 \
-    PyArabic==0.6.15 \
-    arabic-reshaper==3.0.0 \
+    Pillow \
+    numpy \
+    opencv-python-headless \
+    six \
+    natsort \
+    nltk \
+    lmdb \
     flask \
     gdown
 
-# Model storage dirs
+# Model storage dir
 RUN mkdir -p /app/models
 
 # Copy our API and entrypoint

@@ -31,5 +31,5 @@ else
     echo "==> YOLOv8 model already present."
 fi
 
-echo "==> Starting UTRNet PDF API on port 5000..."
+echo "==> Starting UTRNet PDF API on port 5001..."
 exec python /app/utrnet/api.py

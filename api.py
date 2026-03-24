@@ -54,6 +54,7 @@ class Opt:
     rgb                = False
     character          = content
     num_class          = len(content) + 1   # +1 for CTC blank
+    device             = torch.device("cpu")   # ← ADD THIS LINE
 
 opt = Opt()
 

@@ -61,7 +61,7 @@ opt = Opt()
 # ── UTRNet recognition model ───────────────────────────────────────────────
 print("[BOOT] Loading UTRNet-Large recognition model...", flush=True)
 recognition_model = Model(opt)
-//recognition_model = torch.nn.DataParallel(recognition_model)
+#recognition_model = torch.nn.DataParallel(recognition_model)
 state_dict = torch.load(UTRNET_MODEL_PATH, map_location=device)
 recognition_model.load_state_dict(state_dict)
 recognition_model = recognition_model.to(device)
